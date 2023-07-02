@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Churn Prediction</title>
+    <style>
+      /* CSS styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: azure;
+      }
+
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color:#988b8b5b;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .form-group select,
+      .form-group input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .form-group input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      #predres{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #000000ab;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Churn Prediction App</h1>
+    <p>Please fill out the form to predict churn:</p>
+    <div class="form-container">
+      <form action="/churn/v1/predict" method="post">
+        <div class="form-group">
+          <label for="Contract">Contract:</label>
+          <select id="Contract" name="Contract">
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="TechSupport">Tech Support:</label>
+          <select id="TechSupport" name="TechSupport">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="PaymentMethod">Payment Method:</label>
+          <select id="PaymentMethod" name="PaymentMethod">
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">
+              Bank transfer (automatic)
+            </option>
+            <option value="Credit card (automatic)">
+              Credit card (automatic)
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="InternetService">Internet Service:</label>
+          <select id="InternetService" name="InternetService">
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="DSL">DSL</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="PaperlessBilling">Paperless Billing:</label>
+          <select id="PaperlessBilling" name="PaperlessBilling">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="SeniorCitizen">Senior Citizen:</label>
+          <select id="SeniorCitizen" name="SeniorCitizen">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="StreamingMovies">Streaming Movies:</label>
+          <select id="StreamingMovies" name="StreamingMovies">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="StreamingTV">Streaming TV:</label>
+          <select id="StreamingTV" name="StreamingTV">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="MonthlyCharges">Monthly Charges:</label>
+          <input
+            type="number"
+            id="MonthlyCharges"
+            name="MonthlyCharges"
+            step="0.01"
+            min="0"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Predict" />
+        </div>
+      </form>
+      {% if response %}
+      <div>
+        <h2 style="font-family: 'Times New Roman', Times, serif; text-align: center; color: black;">Prediction Result:</h2>
+        <p id="predres" style="color: {% if response.prediction == 'Yes' %}red{% else %}green{% endif %}">{{ response.prediction }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
