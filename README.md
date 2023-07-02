@@ -69,7 +69,9 @@ The project directory contains the following files and directories:
 churn_prediction.py: The main script for data loading, preprocessing, model training, and evaluation.
 
 REST_API.py: The Flask application script for model deployment.
+
 churn.pkl: The serialized version of the trained model saved using pickle.
+
 index.html: The HTML template for the web interface.
 
 ## Acknowledgments
