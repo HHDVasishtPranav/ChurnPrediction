@@ -63,6 +63,11 @@ Define routes for the web application: In this project, the main route '/' rende
 Implement the prediction logic: When the prediction route is accessed with a POST request, the input data is extracted from the request, processed, and passed to the loaded model for prediction. The result is then rendered on the index.html template.
 
 Run the Flask application: Execute app.run(debug=True) to start the Flask server in debug mode.
+
+## Screen Shots
+![ss1](https://github.com/HHDVasishtPranav/ChurnPrediction/blob/main/static/Screenshot%202023-07-03%20115712.png?raw=true "Title")
+![ss2](https://github.com/HHDVasishtPranav/ChurnPrediction/blob/main/static/Screenshot%202023-07-03%20115757.png?raw=true "Title")
+![analysis](https://github.com/HHDVasishtPranav/ChurnPrediction/blob/main/static/output.png?raw=true "Title")
 ## Project Structure
 The project directory contains the following files and directories:
 
